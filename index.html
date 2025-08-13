@@ -1,86 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>David & Goliath - Youth Challenge</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David & Goliath Story</title>
+<style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f9fc;
-      color: #333;
-      text-align: center;
-      padding: 20px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
     }
-    h1 {
-      color: #0066cc;
+    img {
+        max-width: 90%;
+        max-height: 70vh;
+        border: 2px solid #333;
+        border-radius: 10px;
+        margin-bottom: 10px;
     }
-    .quiz {
-      margin-top: 20px;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .caption {
+        font-size: 18px;
+        margin-bottom: 20px;
     }
     button {
-      background: #28a745;
-      color: white;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: white;
     }
     button:hover {
-      background: #218838;
+        background-color: #555;
     }
-  </style>
+</style>
 </head>
 <body>
 
-  <h1>David & Goliath - Be Brave!</h1>
-  <p>David was just a young shepherd boy, but he had faith in God.  
-     While others feared Goliath, David stepped forward with a sling,  
-     trusting that the Lord would give him victory.  
-     Remember: with God, no giant is too big!</p>
+<h1>David & Goliath Story</h1>
+<img id="storyImage" src="" alt="Story Image">
+<div class="caption" id="caption"></div>
+<br>
+<button onclick="prevImage()">Previous</button>
+<button onclick="nextImage()">Next</button>
 
-  <h2>Quick Quiz</h2>
-  <div class="quiz">
-    <p><b>1.</b> What was David’s weapon?</p>
-    <input type="radio" name="q1"> Sword<br>
-    <input type="radio" name="q1" id="q1-correct"> Sling and stones<br>
-    <input type="radio" name="q1"> Spear<br>
+<script>
+    const images = [];
+    const captions = [];
 
-    <p><b>2.</b> Who gave David victory?</p>
-    <input type="radio" name="q2"> His own strength<br>
-    <input type="radio" name="q2" id="q2-correct"> God<br>
-    <input type="radio" name="q2"> King Saul<br>
-
-    <p><b>3.</b> What can we learn from David?</p>
-    <input type="radio" name="q3" id="q3-correct"> Trust God against all odds<br>
-    <input type="radio" name="q3"> Always fight with weapons<br>
-    <input type="radio" name="q3"> Avoid challenges<br><br>
-
-    <button onclick="checkQuiz()">Check Answers</button>
-    <p id="result"></p>
-  </div>
-
-  <script>
-    function checkQuiz() {
-      let score = 0;
-      if (document.getElementById("q1-correct").checked) score++;
-      if (document.getElementById("q2-correct").checked) score++;
-      if (document.getElementById("q3-correct").checked) score++;
-
-      let result = document.getElementById("result");
-      if (score === 3) {
-        result.innerHTML = "🎉 Great job! You have faith like David!";
-      } else {
-        result.innerHTML = "💡 Keep learning! Try again.";
-      }
+    // Add images 00 to 21
+    for (let i = 0; i <= 21; i++) {
+        const num = i.toString().padStart(2, '0');
+        images.push(`${num}_FB_YO_David_Goliath_1024.jpg`);
+        captions.push(`This is a random caption for image ${num}`); // Replace with actual captions later
     }
-  </script>
+
+    let currentIndex = 0;
+
+    function showImage(index) {
+        const imgElement = document.getElementById("storyImage");
+        const captionElement = document.getElementById("caption");
+
+        imgElement.src = images[index];
+        captionElement.textContent = captions[index];
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+
+    // Initialize
+    showImage(currentIndex);
+</script>
 
 </body>
 </html>
